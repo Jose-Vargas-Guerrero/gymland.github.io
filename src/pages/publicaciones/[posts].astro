@@ -1,0 +1,20 @@
+---
+export async function getStaticPaths() {
+  const posts = [
+    {id: '1', category: "astro", title: "API Reference"},
+    {id: '2', category: "react", title: "Creating a React Counter!"}
+  ];
+  return posts.map((post) => {
+    return {
+      params: { posts: post.id },
+      props: { post }
+    };
+  });
+}
+const {posts} = Astro.params;
+const {post} = Astro.props;
+---
+<body>
+  <h1>{posts}: {post.title}</h1>
+  <h2>Categoría: {post.category}</h2>
+</body>
